@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'storyberg'
-  s.version     = '0.0.0'
+  s.version     = '1.0.0'
   s.date        = '2013-01-14'
   s.summary     = "Hola!"
   s.description = "A simple hello world gem"
