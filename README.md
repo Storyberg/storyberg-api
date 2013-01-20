@@ -31,41 +31,32 @@ http://storyberg.com
 ```
 
 **user_id** : string
-  
     A unique identifier for the user.
 
 ** attributes** is an optional hash that accepts the following keys:
 
 * **n** : string
-  
     The user's full name.
 
 * **e** : string
-
     The user's email address.
     
 * **sud** : integer
-  
     A Unix timestamp of the sign-up date.
   
 * **a** : string
-  
     You can associate a user to an account by providing a unique identifier for the account such as an account ID. A user may be associated to multiple accounts by sending the same user_id with different account_ids.
 
 * **an** : string
-  
     The account's name. An account name will only be recorded if an account identifier has also been provided.
     
 * **sbt** : string
-
     Tag the user's session with a campaign name. A Tag is used to connect the users interactions with the application to a campaign allowing you to identify which campaign was most affective. Tag names will appear on your Validation Board.
     
 * **ls** : integer
-    
     A Unix timestamp of when the user is last seen. This key can be used to import existing users.
     
 * **asud** : integer 
-    
     A Unix timestamp of when the account was created. This key can be used to import existing accounts.
     
 Example:
@@ -85,11 +76,9 @@ Example:
 **attributes** is an optional hash that accepts the following keys:
   
 * **a** : string
-  
     A unique identifier of an existing account which this user has been registered to. This will connect the users activity to a specific account.
   
 * **sbt** : string
-    
     Tag the event with a campaign name. If a tag is not supplied, Storyberg will search for a user session that contains a tag and automatically associate the tag with the event.
       
 Example:
