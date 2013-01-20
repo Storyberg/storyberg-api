@@ -41,7 +41,7 @@ http://storyberg.com
     The user's full name.
 
 * **e** : string
-  
+
     The user's email address.
     
 * **sud** : integer
