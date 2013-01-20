@@ -1,6 +1,6 @@
 ## Storyberg
 
-Storyberg project management tool that helps business owners make better decisions.
+Storyberg is a project management tool that helps business owners make better decisions.
 
 http://storyberg.com
 
