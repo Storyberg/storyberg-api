@@ -12,7 +12,7 @@ http://storyberg.com
 ## Install
 
 ```ruby
-  gem install storyberg 
+  gem install storyberg
 ```
 
 ## Usage
