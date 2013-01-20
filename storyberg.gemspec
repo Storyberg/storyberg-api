@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.name        = 'storyberg'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2013-01-14'
-  s.summary     = "Hola!"
-  s.description = "A simple hello world gem"
+  s.summary     = "Storyberg is a project management tool that helps business owners make better decisions."
+  s.description = "Identify accounts and users then, track user events with Storyberg."
   s.authors     = ['Kevin Nguyen']
   s.email       = 'kevin@storyberg.com'
   s.files       = ['lib/storyberg.rb']
