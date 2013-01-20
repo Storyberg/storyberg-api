@@ -20,14 +20,14 @@ http://storyberg.com
 ### Initialize Storyberg
 
 ```ruby
-  Storyberg::init YOUR_STORYBERG_API_TOKEN
+  Storyberg::init YOUR_STORYBERG_API_TOKEN
 ```
   **YOUR_STORYBERG_API_TOKEN** is generated on your "Project settings" page.
 
 ### Identify Users Directly
 
 ```ruby
-  Storyberg.identify user_id, attributes
+  Storyberg.identify user_id, attributes
 ```
 
 **user_id** : string
@@ -62,12 +62,12 @@ http://storyberg.com
 Example:
 
 ```ruby
-Storyberg.identify current_user.id, {e: current_user.email, n: current_user.display_name, sud: current_user.created_at.to_i, a: current_user.organization.id, an: current_user.organization.name}
+  Storyberg.identify current_user.id, {e: current_user.email, n: current_user.display_name, sud: current_user.created_at.to_i, a: current_user.organization.id, an: current_user.organization.name}
 ```
 ### Track Events Directly
 
 ```ruby
-  Storyberg.record user_id, attributes
+  Storyberg.record user_id, attributes
 ```
 
 **user_id** is the unique identifier of a user who has previously been identified.
@@ -82,7 +82,7 @@ Storyberg.identify current_user.id, {e: current_user.email, n: current_user.disp
   
 Example:
 ```ruby
-  Storyberg.record current_user.id, {a: current_user.organization.id}
+  Storyberg.record current_user.id, {a: current_user.organization.id}
 ```
 
 ### Import Your Existing Data
@@ -95,10 +95,10 @@ Example:
 Storyberg.init YOUR_STORYBERG_API_KEY
 @organizations = Organization.all
 @organizations.each do |organization|
-  organization.users.each do |user| 
-    puts "Identifying #{user.display_name}@#{organization.name}"
-    Storyberg.identify user.id, {e: user.email, n: user.display_name, sud: user.created_at.to_i, a: organization.id, an: organization.name, ls: user.created_at.to_i, asud: organization.created_at.to_i}
-  end
+  organization.users.each do |user| 
+    puts "Identifying #{user.display_name}@#{organization.name}"
+    Storyberg.identify user.id, {e: user.email, n: user.display_name, sud: user.created_at.to_i, a: organization.id, an: organization.name, ls: user.created_at.to_i, asud: organization.created_at.to_i}
+  end
 end
 ```
 
