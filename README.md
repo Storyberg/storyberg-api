@@ -4,7 +4,7 @@ Storyberg is a project management tool that helps business owners make better de
 
 http://storyberg.com
 
-## What does this Gem do?
+## What does this gem do?
 
 - Identify accounts and users with attributes.
 - Track events with attributes.
@@ -14,15 +14,20 @@ http://storyberg.com
 ```ruby
   gem install storyberg
 ```
+### Install in Rails
+If you plan to use Storyberg with a Rails application, add `gem 'storyberg'` to your gemfile and run `bundle install` to install the storyberg gem.
 
 ## Usage
 
 ### Initialize Storyberg
 
+  Before calling any of the common methods you must call Storyberg::init with a valid API key (found on your project settings page.)
+
 ```ruby
   Storyberg::init YOUR_STORYBERG_API_TOKEN
 ```
-  **YOUR_STORYBERG_API_TOKEN** is generated on your "Project settings" page.
+### Initialize in Rails
+You can initalize Storyberg in Rails by calling `Storyberg::init` in an initalizer `config/initializers/storyberg.rb`
 
 ### Identify Users Directly
 
@@ -81,6 +86,10 @@ Example:
 * **sbt** : string
     Tag the event with a campaign name. If a tag is not supplied, Storyberg will search for a user session that contains a tag and automatically associate the tag with the event.
       
+How to use it from Rails controllers?
+
+How to use it from Rails controllers?
+
 Example:
 ```ruby
   Storyberg.record current_user.id, {a: current_user.organization.id}
@@ -89,19 +98,27 @@ Example:
 ### Import Your Existing Data
   
 Import your existing users and accounts into Storyberg by identifying them with an attribute hash that contains: ls (last seen) and asud (account sign up date) keys. By setting these values, the users membership length will be when you specify rather than the time of the import. 
+
+This can be done using a Rake task.
   
 Example:
+
+`lib/tasks/import_users.rb`
   
 ```ruby
-Storyberg.init YOUR_STORYBERG_API_KEY
-@organizations = Organization.all
-@organizations.each do |organization|
-  organization.users.each do |user|
-    puts "Identifying #{user.display_name}@#{organization.name}"
-    Storyberg.identify user.id, {e: user.email, n: user.display_name, sud: user.created_at.to_i, a: organization.id, an: organization.name, ls: user.created_at.to_i, asud: organization.created_at.to_i}
-  end
+namespace :db do
+  task :import_users => :environment do
+    Storyberg.init YOUR_STORYBERG_API_KEY
+    @users = User.all
+      users.each do |user|
+        puts "Identifying #{user.display_name}"
+        Storyberg.identify user.id, {e: user.email, n: user.full_name, sud: user.created_at.to_i, ls: user.created_at.to_i}
+      end
+    end
 end
 ```
+
+Run `rake db:import_users` to start the Rake task.
   
 ## Supported Ruby Platforms
   
