@@ -5,12 +5,13 @@ describe Storyberg do
     Storyberg.api_key.should == 'sbk'
   end
 
-  it "makes an http request" do
+  it 'makes an http request' do
     HTTParty.should_receive(:get).with("http://www.google.com")
     Storyberg.get("http://www.google.com")
   end
 
   it 'requires a key' do
+    Storyberg.api_key.should == nil
     Storyberg.identify(1, {n: 'Salty Sealion'}).should == false
     Storyberg.record(1, {n: 'Salty Sealion'}).should == false
   end

@@ -3,7 +3,7 @@ require 'cgi'
 
 class Storyberg
   @key = nil
-  @host = 'k.storyberg.com'
+  @host = 'a.storyberg.com'
 
   def self.api_key
     @key

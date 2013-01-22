@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'storyberg'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2013-01-14'
   s.summary     = "Storyberg is a project management tool that helps business owners make better decisions."
   s.description = "Identify accounts and users then, track user events with Storyberg."
