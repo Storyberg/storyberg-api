@@ -67,7 +67,7 @@ You can initalize Storyberg in Rails by calling `Storyberg::init` in an initaliz
 Example:
   
 ```ruby
-  Storyberg.identify current_user.id, {e: current_user.email, n: current_user.display_name, sud: current_user.created_at.to_i, a: current_user.organization.id, an: current_user.organization.name}
+  Storyberg.identify current_user.id, {e: current_user.email, n: current_user.full_name, sud: current_user.created_at.to_i}
 ```
   
 ### Track Events
