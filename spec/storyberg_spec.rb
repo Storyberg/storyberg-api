@@ -11,7 +11,6 @@ describe Storyberg do
   end
 
   it 'requires a key' do
-    Storyberg.api_key.should == nil
     Storyberg.identify(1, {n: 'Salty Sealion'}).should == false
     Storyberg.record(1, {n: 'Salty Sealion'}).should == false
   end
