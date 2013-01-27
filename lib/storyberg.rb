@@ -13,8 +13,8 @@ class Storyberg
     return false unless self.is_initialized?
 
     field_values = hash_keys_to_str user_attributes
-    field_values.update('k' => @key)
-    field_values.update('u' => user_id)
+    field_values.update('api_key' => @key)
+    field_values.update('user_id' => user_id)
     
     self.request 'project_users/identify', field_values
   end
@@ -28,8 +28,8 @@ class Storyberg
     return false unless self.is_initialized?
 
     field_values = hash_keys_to_str user_attributes
-    field_values.update('k' => @key)
-    field_values.update('u' => user_id)
+    field_values.update('api_key' => @key)
+    field_values.update('user_id' => user_id)
     self.identify user_id, user_attributes
     self.request 'project_user_events/record', field_values
   end
@@ -59,6 +59,8 @@ class Storyberg
     end
 
     query_string = params.join("&")
-    self.get("http://#{@host}/#{action}?#{query_string}")
+    response = self.get("http://#{@host}/#{action}.json?#{query_string}")
+    return response.body unless response.nil?
+    return false
   end
 end
