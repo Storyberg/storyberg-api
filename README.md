@@ -61,7 +61,7 @@ You can initalize Storyberg in Rails by calling `Storyberg::init` in an initaliz
 * **last_seen** : integer
     A Unix timestamp of when the user is last seen. This key can be used to import existing users.
     
-* **asud** : integer 
+* **account_sign_up_date** : integer 
     A Unix timestamp of when the account was created. This key can be used to import existing accounts.
     
 Example:
@@ -95,7 +95,7 @@ Example:
   
 ### Import Your Existing Data
   
-Import your existing users and accounts into Storyberg by identifying them with an attribute hash that contains: ls (last seen) and asud (account sign up date) keys. By setting these values, the users membership length will be when you specify rather than the time of the import. 
+Import your existing users and accounts into Storyberg by identifying them with an attribute hash that contains: last_seen and account_sign_up_date keys. By setting these values, the users membership length will be when you specify rather than the time of the import. 
 
 This can be done using a Rake task.
   
