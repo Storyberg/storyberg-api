@@ -40,25 +40,25 @@ You can initalize Storyberg in Rails by calling `Storyberg::init` in an initaliz
 
 ** attributes** is an optional hash that accepts the following keys:
 
-* **n** : string
+* **name** : string
     The user's full name.
 
-* **e** : string
+* **email** : string
     The user's email address.
     
-* **sud** : integer
+* **sign_up_date** : integer
     A Unix timestamp of the sign-up date.
   
-* **a** : string
+* **account_id** : string
     You can associate a user to an account by providing a unique identifier for the account such as an account ID. A user may be associated to multiple accounts by sending the same user_id with different account_ids.
 
-* **an** : string
+* **account_name** : string
     The account's name. An account name will only be recorded if an account identifier has also been provided.
     
-* **sbt** : string
+* **tag** : string
     Tag the user's session with a campaign name. A Tag is used to connect the users interactions with the application to a campaign allowing you to identify which campaign was most affective. Tag names will appear on your Validation Board.
     
-* **ls** : integer
+* **last_seen** : integer
     A Unix timestamp of when the user is last seen. This key can be used to import existing users.
     
 * **asud** : integer 
@@ -67,7 +67,7 @@ You can initalize Storyberg in Rails by calling `Storyberg::init` in an initaliz
 Example:
   
 ```ruby
-  Storyberg.identify current_user.id, {e: current_user.email, n: current_user.full_name, sud: current_user.created_at.to_i}
+  Storyberg.identify current_user.id, {email: current_user.email, name: current_user.full_name, sign_up_date: current_user.created_at.to_i}
 ```
   
 ### Track Events
@@ -80,19 +80,17 @@ Example:
   
 **attributes** is an optional hash that accepts the following keys:
   
-* **a** : string
+* **account_id** : string
     A unique identifier of an existing account which this user has been registered to. This will connect the users activity to a specific account.
   
-* **sbt** : string
+* **tag** : string
     Tag the event with a campaign name. If a tag is not supplied, Storyberg will search for a user session that contains a tag and automatically associate the tag with the event.
       
 How to use it from Rails controllers?
 
-How to use it from Rails controllers?
-
 Example:
 ```ruby
-  Storyberg.record current_user.id, {a: current_user.organization.id}
+  Storyberg.record current_user.id
 ```
   
 ### Import Your Existing Data
@@ -112,7 +110,7 @@ namespace :db do
     @users = User.all
       users.each do |user|
         puts "Identifying #{user.display_name}"
-        Storyberg.identify user.id, {e: user.email, n: user.full_name, sud: user.created_at.to_i, ls: user.created_at.to_i}
+        Storyberg.identify user.id, {email: user.email, name: user.full_name, sign_up_date: user.created_at.to_i, last_seen: user.created_at.to_i}
       end
     end
 end
