@@ -70,10 +70,10 @@ Example:
   Storyberg.identify current_user.id, {email: current_user.email, name: current_user.full_name, sign_up_date: current_user.created_at.to_i}
 ```
   
-### Track Events
+### Track User Activity 
 
 ```ruby
-  Storyberg.record user_id, attributes
+  Storyberg.activity user_id, attributes
 ```
   
 **user_id** is the unique identifier of a user who has previously been identified.
@@ -90,7 +90,28 @@ How to use it from Rails controllers?
 
 Example:
 ```ruby
-  Storyberg.record current_user.id
+  Storyberg.activity current_user.id
+```
+
+
+### Track Payments 
+
+```ruby
+  Storyberg.paid user_id, attributes
+```
+  
+**user_id** is the unique identifier of a user who has previously been identified.
+  
+**attributes** is an optional hash that accepts the following keys:
+  
+* **account_id** : string
+    A unique identifier of an existing account which this user has been registered to. This will connect the users payment activity to a specific account.
+  
+How to use it from Rails controllers?
+
+Example:
+```ruby
+  Storyberg.paid current_user.id
 ```
   
 ### Import Your Existing Data

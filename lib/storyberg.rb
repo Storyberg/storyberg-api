@@ -5,6 +5,10 @@ class Storyberg
   @key = nil
   @host = 'a.storyberg.com'
 
+  def self.activity(user_id, user_attributes = {})
+    self.record(user_id, user_attributes, 'activity')
+  end
+
   def self.api_key
     @key
   end
@@ -24,14 +28,18 @@ class Storyberg
     @host = host unless host == nil
   end
 
-  def self.record(user_id, user_attributes = {})
+  def self.record(user_id, user_attributes = {}, name = 'activity')
     return false unless self.is_initialized?
 
     field_values = hash_keys_to_str user_attributes
     field_values.update('api_key' => @key)
     field_values.update('user_id' => user_id)
     self.identify user_id, user_attributes
-    self.request 'project_user_events/record', field_values
+    self.request "project_user_events/#{name}", field_values
+  end
+  
+  def self.paid(user_id, user_attributes = {})
+    self.record(user_id, user_attributes, 'paid')
   end
 
   private
