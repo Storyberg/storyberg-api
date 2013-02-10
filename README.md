@@ -70,42 +70,47 @@ Example:
   Storyberg.identify current_user.id, {email: current_user.email, name: current_user.full_name, sign_up_date: current_user.created_at.to_i}
 ```
   
-### Track User Activity 
+### Track Events
+
+  Track any events your users have performed.
 
 ```ruby
-  Storyberg.activity user_id, attributes
+  Storyberg.event event_name, user_id
 ```
+**event_name** is the the name of the event. Set the event_name to be 'key' when tracking your key activity you want your users to perform.
   
 **user_id** is the unique identifier of a user who has previously been identified.
   
-**attributes** is an optional hash that accepts the following keys:
-  
-* **account_id** : string
-    A unique identifier of an existing account which this user has been registered to. This will connect the users activity to a specific account.
-  
-* **tag** : string
-    Tag the event with a campaign name. If a tag is not supplied, Storyberg will search for a user session that contains a tag and automatically associate the tag with the event.
-      
 How to use it from Rails controllers?
 
 Example:
 ```ruby
-  Storyberg.activity current_user.id
+  Storyberg.event 'watched video', current_user.id
+```
+### Tracking The Key Activity 
+
+  Record is a quick way to track your key activity. It is the same as calling Storyberg.event('key', user_id)
+
+```ruby
+  Storyberg.record user_id
+```
+**user_id** is the unique identifier of a user who has previously been identified.
+
+Example:
+```ruby
+  Storyberg.record current_user.id
 ```
 
 
 ### Track Payments 
+
+  Paid is a quick way to track when your user has made a payment. It is the same as calling Storyberg.event('paid', user_id)
 
 ```ruby
   Storyberg.paid user_id, attributes
 ```
   
 **user_id** is the unique identifier of a user who has previously been identified.
-  
-**attributes** is an optional hash that accepts the following keys:
-  
-* **account_id** : string
-    A unique identifier of an existing account which this user has been registered to. This will connect the users payment activity to a specific account.
   
 How to use it from Rails controllers?
 
