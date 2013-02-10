@@ -15,10 +15,9 @@ describe Storyberg do
   it 'requires a key' do
     Storyberg.init nil
 
+    Storyberg.identify(1).should == false
 
-    Storyberg.identify(1, {name: 'Salty Sealion'}).should == false
-
-    Storyberg.activity(1, {name: 'Salty Sealion'}).should == false
+    Storyberg.record(1).should == false
   end
 
   it 'identifies a user' do
@@ -29,21 +28,27 @@ describe Storyberg do
     Storyberg.identify 1, {name: 'Salty Sealion'}
   end
 
-  it 'records activity events against a user' do
+  it 'records key events against a user' do
     Storyberg.init('sbk', 'storyberg.dev')
 
-    HTTParty.should_receive(:get).with 'http://storyberg.dev/project_users/identify.json?account_id=1&api_key=sbk&user_id=1'
-    HTTParty.should_receive(:get).with 'http://storyberg.dev/project_user_events/activity.json?account_id=1&api_key=sbk&user_id=1'
+    HTTParty.should_receive(:get).with 'http://storyberg.dev/project_user_events/create.json?api_key=sbk&sb_event=key&user_id=1'
 
-    Storyberg.activity 1, {account_id: 1}
+    Storyberg.record 1
   end
 
   it 'records paid events against a user' do
     Storyberg.init('sbk', 'storyberg.dev')
 
-    HTTParty.should_receive(:get).with 'http://storyberg.dev/project_users/identify.json?account_id=1&api_key=sbk&user_id=1'
-    HTTParty.should_receive(:get).with 'http://storyberg.dev/project_user_events/paid.json?account_id=1&api_key=sbk&user_id=1'
+    HTTParty.should_receive(:get).with 'http://storyberg.dev/project_user_events/create.json?api_key=sbk&sb_event=paid&user_id=1'
 
-    Storyberg.paid 1, {account_id: 1}
+    Storyberg.paid 1
+  end
+
+  it 'records any type of events against a user' do
+    Storyberg.init('sbk', 'storyberg.dev')
+
+    HTTParty.should_receive(:get).with 'http://storyberg.dev/project_user_events/create.json?api_key=sbk&sb_event=watched_video&user_id=1'
+
+    Storyberg.event 'watched_video', 1
   end
 end
