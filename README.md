@@ -49,20 +49,11 @@ You can initalize Storyberg in Rails by calling `Storyberg::init` in an initaliz
 * **sign_up_date** : integer
     A Unix timestamp of the sign-up date.
   
-* **account_id** : string
-    You can associate a user to an account by providing a unique identifier for the account such as an account ID. A user may be associated to multiple accounts by sending the same user_id with different account_ids.
-
-* **account_name** : string
-    The account's name. An account name will only be recorded if an account identifier has also been provided.
-    
-* **tag** : string
+* **sb_tag** : string
     Tag the user's session with a campaign name. A Tag is used to connect the users interactions with the application to a campaign allowing you to identify which campaign was most affective. Tag names will appear on your Validation Board.
     
 * **last_seen** : integer
     A Unix timestamp of when the user is last seen. This key can be used to import existing users.
-    
-* **account_sign_up_date** : integer 
-    A Unix timestamp of when the account was created. This key can be used to import existing accounts.
     
 Example:
   
