@@ -28,6 +28,14 @@ describe Storyberg do
     Storyberg.identify 1, {name: 'Salty Sealion'}
   end
 
+  it 'can identify with a tag' do
+    Storyberg.init 'sbk', 'storyberg.dev'
+
+    HTTParty.should_receive(:get).with 'http://storyberg.dev/project_users/identify.json?name=Salty+Sealion&api_key=sbk&user_id=1&sb_tag=email_campaign'
+
+    Storyberg.identify(1, {name: 'Salty Sealion', tag: 'email_campaign'})
+  end
+
   it 'records key events against a user' do
     Storyberg.init('sbk', 'storyberg.dev')
 

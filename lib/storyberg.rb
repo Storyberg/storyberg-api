@@ -22,6 +22,11 @@ class Storyberg
     field_values = hash_keys_to_str user_attributes
     field_values.update('api_key' => @key)
     field_values.update('user_id' => user_id)
+
+    if field_values.has_key? 'tag'
+      field_values.update 'sb_tag' => field_values['tag']
+      field_values.delete 'tag'
+    end
     
     self.request 'project_users/identify', field_values
   end
