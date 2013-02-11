@@ -50,8 +50,7 @@ You can initalize Storyberg in Rails by calling `Storyberg::init` in an initaliz
     A Unix timestamp of the sign-up date.
   
 * **sb_tag** : string
-    Tag the user's session with a campaign name. A Tag is used to connect the users interactions with the application to a campaign allowing you to identify which campaign was most affective. Tag names will appear on your Validation Board.
-    
+    Tag the user's session with a campaign name. A Tag is used to connect the users interactions with the application to a campaign allowing you to identify which campaign was most affective. Tags need to be one word with no spaces.
 * **last_seen** : integer
     A Unix timestamp of when the user is last seen. This key can be used to import existing users.
     
