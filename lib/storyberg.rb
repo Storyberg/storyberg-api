@@ -9,7 +9,7 @@ class Storyberg
     @key
   end
 
-  def self.event(name, user_id)
+  def self.event(user_id, name)
     return false unless self.is_initialized?
 
     field_values = {'api_key' => @key, 'sb_event' => name, 'user_id' => user_id}
@@ -39,13 +39,13 @@ class Storyberg
   def self.record(user_id)
     return false unless self.is_initialized?
 
-    self.event('key', user_id)
+    self.event(user_id, 'key')
   end
   
   def self.paid(user_id)
     return false unless self.is_initialized?
 
-    self.event('paid', user_id)
+    self.event(user_id, 'paid')
   end
 
   private

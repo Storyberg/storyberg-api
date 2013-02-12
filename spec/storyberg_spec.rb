@@ -57,6 +57,6 @@ describe Storyberg do
 
     HTTParty.should_receive(:get).with 'http://storyberg.dev/project_user_events/create.json?api_key=sbk&sb_event=watched_video&user_id=1'
 
-    Storyberg.event 'watched_video', 1
+    Storyberg.event 1, 'watched_video'
   end
 end
