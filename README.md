@@ -65,17 +65,18 @@ Example:
   Track any events your users have performed.
 
 ```ruby
-  Storyberg.event event_name, user_id
+  Storyberg.event user_id, event_name
 ```
-**event_name** is the the name of the event. Set the event_name to be 'key' when tracking your key activity you want your users to perform.
   
 **user_id** is the unique identifier of a user who has previously been identified.
+
+**event_name** is the the name of the event. Set the event_name to be 'key' when tracking your key activity you want your users to perform.
   
 How to use it from Rails controllers?
 
 Example:
 ```ruby
-  Storyberg.event 'watched video', current_user.id
+  Storyberg.event current_user.id, 'watched video'
 ```
 ### Tracking The Key Activity 
 
@@ -97,7 +98,7 @@ Example:
   Paid is a quick way to track when your user has made a payment. It is the same as calling Storyberg.event('paid', user_id)
 
 ```ruby
-  Storyberg.paid user_id, attributes
+  Storyberg.paid user_id
 ```
   
 **user_id** is the unique identifier of a user who has previously been identified.
