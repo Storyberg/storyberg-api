@@ -42,7 +42,7 @@ class Storyberg
     self.event('key', user_id)
   end
   
-  def self.paid(user_id, user_attributes = {})
+  def self.paid(user_id)
     return false unless self.is_initialized?
 
     self.event('paid', user_id)
