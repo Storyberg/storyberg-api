@@ -46,6 +46,9 @@ You can initalize Storyberg in Rails by calling `Storyberg::init` in an initaliz
 * **email** : string
     The user's email address.
     
+* **plan** : string
+    The name of the plan the user is currently subscribed to. This will default to basic and will be automatically tracked as the user changes their plan. 
+
 * **sign_up_date** : integer
     A Unix timestamp of the sign-up date.
   
